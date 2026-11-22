@@ -25,10 +25,17 @@ Listagem do acervo cadastrado no sistema, com titulos, autores, codigos ISBN, ca
 
 ---
 
+### Filtragem por Categoria
+Demonstracao do filtro por categoria em funcionamento (categoria Tecnologia selecionada), atualizando a tabela dinamicamente com apenas as obras correspondentes e recalculando os contadores.
+
+![Filtragem por Categoria](docs/screenshots/02-filtro-categoria.png)
+
+---
+
 ### Cadastro de Livros
 Formulario administrativo para insercao de novas obras no catalogo, permitindo preenchimento de titulo, autor, ISBN, selecao de categoria e definicao da disponibilidade.
 
-![Cadastro de Livros](docs/screenshots/02-cadastro-livro.png)
+![Cadastro de Livros](docs/screenshots/03-cadastro-livro.png)
 
 ---
 
@@ -36,7 +43,7 @@ Formulario administrativo para insercao de novas obras no catalogo, permitindo p
 
 A solucao adota uma arquitetura 3-Tier com tres servicos isolados:
 
-![Topologia Docker](docs/screenshots/03-arquitetura-docker.png)
+![Topologia Docker](docs/screenshots/04-arquitetura-docker.png)
 
 ### Descricao dos Conteineres
 
