@@ -1,147 +1,142 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600">
   <defs>
     <style>
-      .bg { fill: #f8f9fa; }
-      .navbar { fill: #0d6efd; }
-      .nav-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 20px; fill: #ffffff; }
-      .nav-badge { fill: #ffffff; }
-      .nav-badge-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; font-size: 12px; fill: #0d6efd; }
-      .nav-sub { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; fill: #e0e8f9; }
-      .card { fill: #ffffff; stroke: #e9ecef; stroke-width: 1; rx: 8; }
-      .card-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 11px; fill: #6c757d; text-transform: uppercase; }
-      .card-num { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 24px; fill: #212529; }
-      .border-primary { stroke: #0d6efd; stroke-width: 4; }
-      .border-success { stroke: #198754; stroke-width: 4; }
-      .border-warning { stroke: #ffc107; stroke-width: 4; }
-      .border-info { stroke: #0dcaf0; stroke-width: 4; }
-      .tbl-header { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; font-size: 11px; fill: #6c757d; text-transform: uppercase; }
-      .tbl-cell { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; fill: #212529; }
-      .tbl-isbn { font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; fill: #d63384; }
-      .badge-disp { fill: #198754; rx: 4; }
-      .badge-disp-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; font-size: 11px; fill: #ffffff; }
-      .badge-emp { fill: #ffc107; rx: 4; }
-      .badge-emp-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; font-size: 11px; fill: #000000; }
-      .btn-primary { fill: #0d6efd; rx: 4; }
-      .btn-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 12px; fill: #ffffff; }
-      .btn-del { fill: #ffffff; stroke: #dc3545; stroke-width: 1; rx: 4; }
-      .btn-del-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; fill: #dc3545; }
+      .bg { fill: #f0f4f8; }
+      .navbar { fill: #ffffff; stroke: #e2e8f0; stroke-width: 1; }
+      .logo { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 19px; fill: #1d4ed8; }
+      .nav-item { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; fill: #64748b; }
+      .nav-active { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; font-size: 14px; fill: #1d4ed8; }
+      .user-tag { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; font-size: 13px; fill: #dc2626; }
+      .btn-sair-bg { fill: #475569; rx: 4; }
+      .btn-sair-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; fill: #ffffff; }
+      .card-bg { fill: #ffffff; stroke: #e2e8f0; stroke-width: 1; rx: 6; }
+      .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 18px; fill: #1e293b; }
+      .total-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; fill: #64748b; }
+      .lbl { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; fill: #475569; }
+      .select-box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1; rx: 4; }
+      .select-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; fill: #1e293b; }
+      .btn-filtrar-bg { fill: #1d4ed8; rx: 4; }
+      .btn-filtrar-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 13px; fill: #ffffff; }
+      .th { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 11px; fill: #64748b; text-transform: uppercase; }
+      .td-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 13px; fill: #0f172a; }
+      .td-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; fill: #334155; }
+      .badge-cat-bg { fill: #e0e7ff; rx: 12; }
+      .badge-cat-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; font-size: 11px; fill: #4338ca; }
+      .badge-disp-bg { fill: #dcfce7; rx: 12; }
+      .badge-disp-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; font-size: 11px; fill: #15803d; }
+      .badge-emp-bg { fill: #fee2e2; rx: 12; }
+      .badge-emp-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; font-size: 11px; fill: #b91c1c; }
+      .pag-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 12px; fill: #64748b; }
+      .page-btn-bg { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1; rx: 4; }
+      .page-btn-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 12px; fill: #475569; }
+      .page-active-bg { fill: #1d4ed8; stroke: #1d4ed8; stroke-width: 1; rx: 4; }
+      .page-active-txt { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 12px; fill: #ffffff; font-weight: 600; }
     </style>
   </defs>
 
-  <rect width="1000" height="640" class="bg"/>
+  <rect width="1000" height="600" class="bg"/>
 
-  <rect width="1000" height="56" class="navbar"/>
-  <text x="40" y="36" class="nav-title">BookFlow</text>
-  <rect x="150" y="16" width="115" height="24" rx="12" class="nav-badge"/>
-  <text x="160" y="33" class="nav-badge-text">Docker 3-Tier</text>
-  <text x="680" y="34" class="nav-sub">Sistema de Gestao Bibliotecaria - IFSP</text>
+  <rect width="1000" height="52" class="navbar"/>
+  <text x="40" y="33" class="logo">BookFlow</text>
+  <text x="135" y="33" class="nav-item">Home</text>
+  <text x="185" y="33" class="nav-active">Livros</text>
+  <text x="240" y="33" class="nav-item">Admin</text>
 
-  <g transform="translate(40, 76)">
-    <rect width="210" height="74" rx="8" class="card"/>
-    <line x1="0" y1="0" x2="0" y2="74" class="border-primary"/>
-    <text x="20" y="28" class="card-title">TOTAL ACERVO</text>
-    <text x="20" y="58" class="card-num">4</text>
-  </g>
+  <text x="700" y="33" class="user-tag">bibliotecario@email.com (ADMIN)</text>
+  <rect x="915" y="16" width="50" height="26" class="btn-sair-bg"/>
+  <text x="928" y="33" class="btn-sair-txt">Sair</text>
 
-  <g transform="translate(276, 76)">
-    <rect width="210" height="74" rx="8" class="card"/>
-    <line x1="0" y1="0" x2="0" y2="74" class="border-success"/>
-    <text x="20" y="28" class="card-title">DISPONIVEIS</text>
-    <text x="20" y="58" class="card-num" style="fill: #198754;">3</text>
-  </g>
+  <g transform="translate(50, 78)">
+    <rect width="900" height="480" class="card-bg"/>
 
-  <g transform="translate(513, 76)">
-    <rect width="210" height="74" rx="8" class="card"/>
-    <line x1="0" y1="0" x2="0" y2="74" class="border-warning"/>
-    <text x="20" y="28" class="card-title">EMPRESTADOS</text>
-    <text x="20" y="58" class="card-num" style="fill: #ffc107;">1</text>
-  </g>
+    <text x="28" y="40" class="title">Catálogo de Livros</text>
+    <text x="765" y="40" class="total-txt">5 livros cadastrados</text>
 
-  <g transform="translate(750, 76)">
-    <rect width="210" height="74" rx="8" class="card"/>
-    <line x1="0" y1="0" x2="0" y2="74" class="border-info"/>
-    <text x="20" y="28" class="card-title">CATEGORIAS</text>
-    <text x="20" y="58" class="card-num" style="fill: #0dcaf0;">4</text>
-  </g>
+    <g transform="translate(28, 70)">
+      <text x="0" y="20" class="lbl">Filtrar por Categoria:</text>
+      <rect x="140" y="0" width="220" height="32" class="select-box"/>
+      <text x="154" y="20" class="select-txt">Todas as Categorias</text>
+      <polygon points="340,14 345,21 350,14" fill="#64748b"/>
 
-  <g transform="translate(40, 170)">
-    <rect width="920" height="430" rx="8" class="card"/>
-
-    <text x="24" y="38" style="font-family: -apple-system, sans-serif; font-weight: 700; font-size: 16px; fill: #212529;">Acervo Bibliografico</text>
-    <text x="24" y="56" style="font-family: -apple-system, sans-serif; font-size: 12px; fill: #6c757d;">Gerencie os titulos cadastrados na biblioteca</text>
-
-    <rect x="680" y="22" width="115" height="32" rx="4" style="fill: #ffffff; stroke: #6c757d; stroke-width: 1;"/>
-    <text x="690" y="42" style="font-family: -apple-system, sans-serif; font-size: 12px; fill: #6c757d;">Nova Categoria</text>
-
-    <rect x="805" y="22" width="95" height="32" class="btn-primary"/>
-    <text x="817" y="42" class="btn-txt">+ Novo Livro</text>
-
-    <line x1="0" y1="72" x2="920" y2="72" stroke="#e9ecef" stroke-width="1"/>
-
-    <rect x="0" y="73" width="920" height="48" fill="#f8f9fa"/>
-    <rect x="24" y="82" width="340" height="30" rx="4" fill="#ffffff" stroke="#ced4da" stroke-width="1"/>
-    <text x="36" y="102" style="font-family: -apple-system, sans-serif; font-size: 12px; fill: #adb5bd;">Buscar por titulo, autor ou ISBN...</text>
-
-    <rect x="380" y="82" width="220" height="30" rx="4" fill="#ffffff" stroke="#ced4da" stroke-width="1"/>
-    <text x="392" y="102" style="font-family: -apple-system, sans-serif; font-size: 12px; fill: #495057;">Todas as Categorias</text>
-
-    <line x1="0" y1="121" x2="920" y2="121" stroke="#e9ecef" stroke-width="1"/>
-
-    <rect x="0" y="122" width="920" height="36" fill="#f8f9fa"/>
-    <text x="24" y="145" class="tbl-header">TITULO</text>
-    <text x="300" y="145" class="tbl-header">AUTOR</text>
-    <text x="500" y="145" class="tbl-header">ISBN</text>
-    <text x="650" y="145" class="tbl-header">CATEGORIA</text>
-    <text x="770" y="145" class="tbl-header">SITUACAO</text>
-    <text x="860" y="145" class="tbl-header">ACOES</text>
-
-    <line x1="0" y1="158" x2="920" y2="158" stroke="#dee2e6" stroke-width="1"/>
-
-    <g transform="translate(0, 168)">
-      <text x="24" y="32" class="tbl-cell" style="font-weight: 600;">Codigo Limpo</text>
-      <text x="300" y="32" class="tbl-cell">Robert C. Martin</text>
-      <text x="500" y="32" class="tbl-isbn">9788576082675</text>
-      <text x="650" y="32" class="tbl-cell">Tecnologia</text>
-      <rect x="760" y="17" width="76" height="22" class="badge-disp"/>
-      <text x="770" y="32" class="badge-disp-txt">Disponivel</text>
-      <rect x="855" y="16" width="48" height="24" class="btn-del"/>
-      <text x="864" y="32" class="btn-del-txt">Excluir</text>
-      <line x1="20" y1="52" x2="900" y2="52" stroke="#f1f3f5" stroke-width="1"/>
+      <rect x="375" y="0" width="75" height="32" class="btn-filtrar-bg"/>
+      <text x="394" y="20" class="btn-filtrar-txt">Filtrar</text>
     </g>
 
-    <g transform="translate(0, 222)">
-      <text x="24" y="32" class="tbl-cell" style="font-weight: 600;">O Programador Pragmatico</text>
-      <text x="300" y="32" class="tbl-cell">Andrew Hunt</text>
-      <text x="500" y="32" class="tbl-isbn">9788577807000</text>
-      <text x="650" y="32" class="tbl-cell">Tecnologia</text>
-      <rect x="760" y="17" width="76" height="22" class="badge-disp"/>
-      <text x="770" y="32" class="badge-disp-txt">Disponivel</text>
-      <rect x="855" y="16" width="48" height="24" class="btn-del"/>
-      <text x="864" y="32" class="btn-del-txt">Excluir</text>
-      <line x1="20" y1="52" x2="900" y2="52" stroke="#f1f3f5" stroke-width="1"/>
+    <line x1="28" y1="130" x2="872" y2="130" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="32" y="150" class="th">TITLE</text>
+    <text x="230" y="150" class="th">AUTHOR</text>
+    <text x="460" y="150" class="th">ISBN</text>
+    <text x="640" y="150" class="th">CATEGORIA</text>
+    <text x="765" y="150" class="th">DISPONIBILIDADE</text>
+    <line x1="28" y1="162" x2="872" y2="162" stroke="#e2e8f0" stroke-width="1"/>
+
+    <g transform="translate(28, 172)">
+      <text x="4" y="24" class="td-title">Clean Code</text>
+      <text x="202" y="24" class="td-txt">Robert C. Martin</text>
+      <text x="432" y="24" class="td-txt">978-0132350884</text>
+      <rect x="612" y="10" width="85" height="20" class="badge-cat-bg"/>
+      <text x="626" y="24" class="badge-cat-txt">Tecnologia</text>
+      <rect x="737" y="10" width="80" height="20" class="badge-disp-bg"/>
+      <text x="750" y="24" class="badge-disp-txt">Disponível</text>
+      <line x1="0" y1="42" x2="844" y2="42" stroke="#f1f5f9" stroke-width="1"/>
     </g>
 
-    <g transform="translate(0, 276)">
-      <text x="24" y="32" class="tbl-cell" style="font-weight: 600;">Duna</text>
-      <text x="300" y="32" class="tbl-cell">Frank Herbert</text>
-      <text x="500" y="32" class="tbl-isbn">9788576573135</text>
-      <text x="650" y="32" class="tbl-cell">Ficcao Cientifica</text>
-      <rect x="760" y="17" width="78" height="22" class="badge-emp"/>
-      <text x="767" y="32" class="badge-emp-txt">Emprestado</text>
-      <rect x="855" y="16" width="48" height="24" class="btn-del"/>
-      <text x="864" y="32" class="btn-del-txt">Excluir</text>
-      <line x1="20" y1="52" x2="900" y2="52" stroke="#f1f3f5" stroke-width="1"/>
+    <g transform="translate(28, 222)">
+      <text x="4" y="24" class="td-title">Design Patterns</text>
+      <text x="202" y="24" class="td-txt">Erich Gamma, Richard Helm</text>
+      <text x="432" y="24" class="td-txt">978-0201633610</text>
+      <rect x="612" y="10" width="88" height="20" class="badge-cat-bg"/>
+      <text x="623" y="24" class="badge-cat-txt">Engenharia</text>
+      <rect x="737" y="10" width="80" height="20" class="badge-disp-bg"/>
+      <text x="750" y="24" class="badge-disp-txt">Disponível</text>
+      <line x1="0" y1="42" x2="844" y2="42" stroke="#f1f5f9" stroke-width="1"/>
     </g>
 
-    <g transform="translate(0, 330)">
-      <text x="24" y="32" class="tbl-cell" style="font-weight: 600;">Sapiens</text>
-      <text x="300" y="32" class="tbl-cell">Yuval Noah Harari</text>
-      <text x="500" y="32" class="tbl-isbn">9788525432186</text>
-      <text x="650" y="32" class="tbl-cell">Historia</text>
-      <rect x="760" y="17" width="76" height="22" class="badge-disp"/>
-      <text x="770" y="32" class="badge-disp-txt">Disponivel</text>
-      <rect x="855" y="16" width="48" height="24" class="btn-del"/>
-      <text x="864" y="32" class="btn-del-txt">Excluir</text>
+    <g transform="translate(28, 272)">
+      <text x="4" y="24" class="td-title">O Senhor dos Anéis</text>
+      <text x="202" y="24" class="td-txt">J.R.R. Tolkien</text>
+      <text x="432" y="24" class="td-txt">978-8595084759</text>
+      <rect x="612" y="10" width="62" height="20" class="badge-cat-bg"/>
+      <text x="625" y="24" class="badge-cat-txt">Ficção</text>
+      <rect x="737" y="10" width="80" height="20" class="badge-disp-bg"/>
+      <text x="750" y="24" class="badge-disp-txt">Disponível</text>
+      <line x1="0" y1="42" x2="844" y2="42" stroke="#f1f5f9" stroke-width="1"/>
+    </g>
+
+    <g transform="translate(28, 322)">
+      <text x="4" y="24" class="td-title">Dom Casmurro</text>
+      <text x="202" y="24" class="td-txt">Machado de Assis</text>
+      <text x="432" y="24" class="td-txt">978-8572328227</text>
+      <rect x="612" y="10" width="78" height="20" class="badge-cat-bg"/>
+      <text x="623" y="24" class="badge-cat-txt">Literatura</text>
+      <rect x="737" y="10" width="80" height="20" class="badge-disp-bg"/>
+      <text x="750" y="24" class="badge-disp-txt">Disponível</text>
+      <line x1="0" y1="42" x2="844" y2="42" stroke="#f1f5f9" stroke-width="1"/>
+    </g>
+
+    <g transform="translate(28, 372)">
+      <text x="4" y="24" class="td-title">Arquitetura Limpa</text>
+      <text x="202" y="24" class="td-txt">Robert C. Martin</text>
+      <text x="432" y="24" class="td-txt">978-8550804606</text>
+      <rect x="612" y="10" width="85" height="20" class="badge-cat-bg"/>
+      <text x="626" y="24" class="badge-cat-txt">Tecnologia</text>
+      <rect x="737" y="10" width="85" height="20" class="badge-emp-bg"/>
+      <text x="747" y="24" class="badge-emp-txt">Emprestado</text>
+      <line x1="0" y1="42" x2="844" y2="42" stroke="#f1f5f9" stroke-width="1"/>
+    </g>
+
+    <g transform="translate(370, 436)">
+      <text x="0" y="18" class="pag-txt">1-5 de 5 registros</text>
+      <rect x="120" y="2" width="24" height="24" class="page-btn-bg"/>
+      <text x="126" y="18" class="page-btn-txt">&laquo;</text>
+      <rect x="148" y="2" width="24" height="24" class="page-btn-bg"/>
+      <text x="156" y="18" class="page-btn-txt">&lt;</text>
+      <rect x="176" y="2" width="24" height="24" class="page-active-bg"/>
+      <text x="184" y="18" class="page-active-txt">1</text>
+      <rect x="204" y="2" width="24" height="24" class="page-btn-bg"/>
+      <text x="212" y="18" class="page-btn-txt">&gt;</text>
+      <rect x="232" y="2" width="24" height="24" class="page-btn-bg"/>
+      <text x="238" y="18" class="page-btn-txt">&raquo;</text>
     </g>
   </g>
 </svg>

@@ -19,19 +19,19 @@ public class DataInitializer {
         return args -> {
             if (catRepo.count() == 0) {
                 Category catTec = catRepo.save(new Category("Tecnologia"));
-                Category catFic = catRepo.save(new Category("Ficção Científica"));
-                Category catHist = catRepo.save(new Category("História"));
-                Category catFilo = catRepo.save(new Category("Filosofia"));
+                Category catEng = catRepo.save(new Category("Engenharia"));
+                Category catFic = catRepo.save(new Category("Ficção"));
+                Category catLit = catRepo.save(new Category("Literatura"));
 
-                bookRepo.save(new Book("Código Limpo", "Robert C. Martin", "9788576082675", catTec, true));
-                bookRepo.save(new Book("O Programador Pragmático", "Andrew Hunt", "9788577807000", catTec, true));
-                bookRepo.save(new Book("Duna", "Frank Herbert", "9788576573135", catFic, false));
-                bookRepo.save(new Book("Sapiens", "Yuval Noah Harari", "9788525432186", catHist, true));
+                bookRepo.save(new Book("Clean Code", "Robert C. Martin", "978-0132350884", catTec, true));
+                bookRepo.save(new Book("Design Patterns", "Erich Gamma, Richard Helm", "978-0201633610", catEng, true));
+                bookRepo.save(new Book("O Senhor dos Anéis", "J.R.R. Tolkien", "978-8595084759", catFic, true));
+                bookRepo.save(new Book("Dom Casmurro", "Machado de Assis", "978-8572328227", catLit, true));
+                bookRepo.save(new Book("Arquitetura Limpa", "Robert C. Martin", "978-8550804606", catTec, false));
             }
 
             if (userRepo.count() == 0) {
-                userRepo.save(new User("Administrador", "admin@ifsp.edu.br", "123456", Role.ADMIN));
-                userRepo.save(new User("Aluno", "aluno@ifsp.edu.br", "123456", Role.USER));
+                userRepo.save(new User("Administrador", "bibliotecario@email.com", "123456", Role.ADMIN));
             }
         };
     }

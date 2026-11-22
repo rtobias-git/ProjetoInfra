@@ -3,200 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookFlow - Gestão Bibliotecária</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>BookFlow</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-light">
+<body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-            <i class="bi bi-journal-bookmark-fill fs-4"></i>
-            <span class="fw-bold tracking-tight">BookFlow</span>
-        </a>
-        <div class="d-flex align-items-center gap-3">
-            <span class="badge bg-light text-primary px-3 py-2 fw-semibold">
-                <i class="bi bi-hdd-network"></i> Docker 3-Tier
-            </span>
-            <span class="text-white small d-none d-md-inline">Sistema de Gestão Bibliotecária</span>
+<header class="navbar">
+    <div class="nav-left">
+        <span class="logo">BookFlow</span>
+        <a href="#" class="nav-link">Home</a>
+        <a href="#" class="nav-link active">Livros</a>
+        <a href="#" class="nav-link">Admin</a>
+    </div>
+    <div class="nav-right">
+        <span class="user-email">bibliotecario@email.com (ADMIN)</span>
+        <button class="btn-sair">Sair</button>
+    </div>
+</header>
+
+<main class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Catálogo de Livros</h2>
+            <span class="total-info" id="totalInfo">5 livros cadastrados</span>
+        </div>
+
+        <div class="filter-section">
+            <label for="filtroCategoria">Filtrar por Categoria:</label>
+            <select id="filtroCategoria">
+                <option value="">Todas as Categorias</option>
+            </select>
+            <button class="btn-filtrar" onclick="filtrarLivros()">Filtrar</button>
+        </div>
+
+        <table class="tabela-livros">
+            <thead>
+                <tr>
+                    <th>TITLE</th>
+                    <th>AUTHOR</th>
+                    <th>ISBN</th>
+                    <th>CATEGORIA</th>
+                    <th>DISPONIBILIDADE</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaCorpo">
+                <tr>
+                    <td colspan="5" style="text-align: center; padding: 20px;">Carregando...</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            <span id="paginacaoTexto">1-5 de 5 registros</span>
+            <div class="paginacao-botoes">
+                <button class="page-btn">&laquo;</button>
+                <button class="page-btn">&lt;</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">&gt;</button>
+                <button class="page-btn">&raquo;</button>
+            </div>
         </div>
     </div>
-</nav>
+</main>
 
-<div class="container my-4">
-
-    <div class="row g-3 mb-4">
-        <div class="col-6 col-md-3">
-            <div class="card stat-card shadow-sm border-0 border-start border-primary border-4">
-                <div class="card-body">
-                    <span class="text-muted small text-uppercase fw-bold">Total Acervo</span>
-                    <h3 class="fw-bold mb-0 mt-1" id="statTotal">0</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-3">
-            <div class="card stat-card shadow-sm border-0 border-start border-success border-4">
-                <div class="card-body">
-                    <span class="text-muted small text-uppercase fw-bold">Disponíveis</span>
-                    <h3 class="fw-bold text-success mb-0 mt-1" id="statDisponiveis">0</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-3">
-            <div class="card stat-card shadow-sm border-0 border-start border-warning border-4">
-                <div class="card-body">
-                    <span class="text-muted small text-uppercase fw-bold">Emprestados</span>
-                    <h3 class="fw-bold text-warning mb-0 mt-1" id="statEmprestados">0</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-3">
-            <div class="card stat-card shadow-sm border-0 border-start border-info border-4">
-                <div class="card-body">
-                    <span class="text-muted small text-uppercase fw-bold">Categorias</span>
-                    <h3 class="fw-bold text-info mb-0 mt-1" id="statCategorias">0</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card shadow-sm border-0">
-        <div class="card-header bg-white py-3 border-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
-            <div>
-                <h5 class="mb-0 fw-bold text-dark"><i class="bi bi-bookshelf me-2 text-primary"></i>Acervo Bibliográfico</h5>
-                <small class="text-muted">Gerencie os títulos cadastrados na biblioteca</small>
-            </div>
-            <div class="d-flex gap-2">
-                <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalCategoria">
-                    <i class="bi bi-tag-fill me-1"></i> Nova Categoria
-                </button>
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalLivro">
-                    <i class="bi bi-plus-circle me-1"></i> Novo Livro
-                </button>
-            </div>
-        </div>
-
-        <div class="card-body bg-light border-bottom py-2">
-            <div class="row g-2 align-items-center">
-                <div class="col-md-5">
-                    <div class="input-group input-group-sm">
-                        <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-                        <input type="text" id="filtroTexto" class="form-control" placeholder="Buscar por título, autor ou ISBN..." oninput="filtrarTabelaLocal()">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="input-group input-group-sm">
-                        <label class="input-group-text bg-white" for="filtroCategoria">Categoria</label>
-                        <select id="filtroCategoria" class="form-select" onchange="carregarLivros()">
-                            <option value="">Todas as Categorias</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3 text-end">
-                    <button class="btn btn-sm btn-outline-dark" onclick="carregarLivros()" title="Atualizar">
-                        <i class="bi bi-arrow-clockwise"></i> Atualizar
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-light text-muted small text-uppercase">
-                    <tr>
-                        <th>Título</th>
-                        <th>Autor</th>
-                        <th>ISBN</th>
-                        <th>Categoria</th>
-                        <th class="text-center">Situação</th>
-                        <th class="text-end pe-4">Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="tabelaLivros">
-                    <tr>
-                        <td colspan="6" class="text-center py-5 text-muted">
-                            <div class="spinner-border text-primary spinner-border-sm me-2" role="status"></div>
-                            Carregando acervo do banco de dados...
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modalLivro" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content border-0 shadow">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title"><i class="bi bi-book me-2"></i>Cadastrar Novo Livro</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
-            </div>
-            <form id="formLivro" onsubmit="salvarLivro(event)">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Título do Livro *</label>
-                        <input type="text" id="livroTitulo" class="form-control" required placeholder="Ex: Clean Code">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Autor *</label>
-                        <input type="text" id="livroAutor" class="form-control" required placeholder="Ex: Robert C. Martin">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">ISBN (13 dígitos) *</label>
-                        <input type="text" id="livroIsbn" class="form-control" required maxlength="13" placeholder="Ex: 9788576082675">
-                    </div>
-                    <div class="row g-2 mb-3">
-                        <div class="col-md-7">
-                            <label class="form-label fw-semibold">Categoria *</label>
-                            <select id="livroCategoria" class="form-select" required>
-                                <option value="" disabled selected>Selecione...</option>
-                            </select>
-                        </div>
-                        <div class="col-md-5">
-                            <label class="form-label fw-semibold">Situação</label>
-                            <select id="livroDisponivel" class="form-select">
-                                <option value="true" selected>Disponível</option>
-                                <option value="false">Emprestado</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-check-lg me-1"></i>Salvar Livro</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modalCategoria" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content border-0 shadow">
-            <div class="modal-header bg-secondary text-white">
-                <h5 class="modal-title"><i class="bi bi-tag me-2"></i>Nova Categoria</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
-            </div>
-            <form id="formCategoria" onsubmit="salvarCategoria(event)">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Nome da Categoria</label>
-                        <input type="text" id="categoriaNome" class="form-control" required placeholder="Ex: Biografias">
-                    </div>
-                </div>
-                <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-check-lg me-1"></i>Salvar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
