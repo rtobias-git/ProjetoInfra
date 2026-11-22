@@ -17,7 +17,7 @@
     </div>
     <div class="nav-right">
         <span class="user-email">bibliotecario@email.com (ADMIN)</span>
-        <button class="btn-sair">Sair</button>
+        <button class="btn-sair" onclick="logout()">Sair</button>
     </div>
 </header>
 
@@ -27,7 +27,7 @@
             <h2>Cadastro de Livros</h2>
         </div>
 
-        <form class="form-grid" onsubmit="event.preventDefault(); alert('Livro cadastrado com sucesso!');">
+        <form class="form-grid" onsubmit="cadastrarLivro(event)">
             <label for="titulo">Título:</label>
             <input type="text" id="titulo" placeholder="Digite o título do livro" value="Engenharia de Software" required>
 
@@ -40,8 +40,8 @@
             <label for="categoria">Categoria:</label>
             <select id="categoria" required>
                 <option value="">Selecione uma categoria</option>
-                <option value="1" selected>Engenharia</option>
-                <option value="2">Tecnologia</option>
+                <option value="1">Engenharia</option>
+                <option value="2" selected>Tecnologia</option>
                 <option value="3">Ficção</option>
                 <option value="4">Literatura</option>
             </select>
@@ -60,5 +60,6 @@
     </div>
 </main>
 
+<script src="app.js"></script>
 </body>
 </html>
