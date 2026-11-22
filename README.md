@@ -6,21 +6,34 @@ Aplicacao full-stack desenvolvida para a atividade pratica individual de implant
 
 ## 1. Visao Geral e Funcionalidades
 
-O BookFlow e uma aplicacao para gerenciamento e consulta de acervos bibliograficos:
+O BookFlow e uma aplicacao voltada para administracao e consulta de acervos bibliograficos em bibliotecas:
 
-- Visualizacao do catalogo de livros cadastrados com titulo, autor, ISBN, categoria e situacao de disponibilidade.
-- Filtragem de obras por categoria selecionada via menu dropdown.
-- Identificacao visual clara do estado de cada exemplar (Disponivel ou Emprestado).
-- Indicador do total de registros cadastrados e paginacao de dados.
+- Listagem de livros cadastrados com exibicao de titulo, autor, ISBN, categoria e situacao do exemplar.
+- Filtro rapido de obras por categoria selecionada (Tecnologia, Engenharia, Ficcao, Literatura).
+- Controle visual de disponibilidade do exemplar atraves de marcadores (Disponivel ou Emprestado).
+- Contador dinamico do total de obras cadastradas e barra de paginacao.
+- Barra superior de navegacao com identificacao do usuario autenticado (bibliotecario@email.com - ADMIN) e botao de encerramento de sessao.
 
 ---
 
-## 2. Interface da Aplicacao
+## 2. Demonstracao das Funcionalidades
 
-### Catalogo de Livros
-Visualizacao dos livros cadastrados no sistema, refletindo a estrutura do banco de dados relacional.
+### Funcionalidade 1: Catalogo Completo de Livros
+Exibicao de todo o acervo registrado no banco de dados com seus respectivos dados cadastrais, identificador ISBN e marcadores visuais de situacao.
 
-![Catalogo de Livros](docs/screenshots/dashboard.svg)
+![Catalogo Geral de Livros](docs/screenshots/01-catalogo-completo.png)
+
+---
+
+### Funcionalidade 2: Filtragem por Categoria
+Permite selecionar uma categoria especifica no menu dropdown e atualizar a listagem para exibir apenas as obras correspondentes, recalculando o total de registros.
+
+![Filtro por Categoria](docs/screenshots/02-filtro-categoria.png)
+
+---
+
+### Funcionalidade 3: Controle de Disponibilidade de Exemplares
+Diferenciacao visual clara entre obras disponiveis para consulta/retirada (destaque verde) e obras atualmente emprestadas (destaque vermelho), permitindo gestao imediata do acervo.
 
 ---
 
@@ -28,7 +41,7 @@ Visualizacao dos livros cadastrados no sistema, refletindo a estrutura do banco 
 
 A solucao adota uma arquitetura 3-Tier com tres servicos isolados:
 
-![Arquitetura Docker](docs/screenshots/arquitetura-docker.svg)
+![Topologia Docker](docs/screenshots/03-arquitetura-docker.png)
 
 ### Descricao dos Conteineres
 
@@ -36,7 +49,7 @@ A solucao adota uma arquitetura 3-Tier com tres servicos isolados:
    - Imagem base: `nginx:alpine`
    - Tecnologia: HTML5, CSS3 e JavaScript Vanilla puro
    - Porta Externa: 3000 (Mapeada para a porta interna 80)
-   - Funcao: Serve a interface web e encaminha chamadas para a API (`/api/`) via proxy reverso.
+   - Funcao: Serve os arquivos estaticos e encaminha chamadas para a API (`/api/`) via proxy reverso.
 
 2. **Backend (`bookflow-backend`)**:
    - Imagem base: Multi-stage com `maven:3.9.6-eclipse-temurin-17` e `eclipse-temurin:17-jre-alpine`
@@ -48,7 +61,7 @@ A solucao adota uma arquitetura 3-Tier com tres servicos isolados:
    - Imagem base: `mysql:8.0`
    - Porta Externa: 3306 (Mapeada para a porta interna 3306)
    - Persistencia: Volume Docker nomeado `db_data` montado em `/var/lib/mysql`
-   - Funcao: Armazenamento persistente dos dados de livros, categorias e usuarios.
+   - Funcao: Armazenamento relacional dos dados com garantia de persistencia.
 
 ### Isolamento por Redes Bridge
 
@@ -100,7 +113,7 @@ O ambiente utiliza duas redes internas independentes:
    - Frontend: `http://localhost:3000`
    - Backend API: `http://localhost:8080/api/books`
 
-5. Para parar a aplicacao:
+5. Para parar a aplicacao mantendo os dados persistidos:
    ```bash
    docker compose down
    ```
