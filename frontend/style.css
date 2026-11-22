@@ -1,0 +1,35 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #2b2f33;
+}
+
+.navbar-brand {
+    font-size: 1.35rem;
+    letter-spacing: -0.5px;
+}
+
+.stat-card {
+    transition: transform 0.15s ease-in-out;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.04);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.badge-status {
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.2s;
+}
+
+.badge-status:hover {
+    opacity: 0.85;
+}
