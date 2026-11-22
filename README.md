@@ -6,34 +6,29 @@ Aplicacao full-stack desenvolvida para a atividade pratica individual de implant
 
 ## 1. Visao Geral e Funcionalidades
 
-O BookFlow e uma aplicacao voltada para administracao e consulta de acervos bibliograficos em bibliotecas:
+O BookFlow e uma aplicacao para gerenciamento de acervos bibliograficos em bibliotecas:
 
-- Listagem de livros cadastrados com exibicao de titulo, autor, ISBN, categoria e situacao do exemplar.
-- Filtro rapido de obras por categoria selecionada (Tecnologia, Engenharia, Ficcao, Literatura).
-- Controle visual de disponibilidade do exemplar atraves de marcadores (Disponivel ou Emprestado).
-- Contador dinamico do total de obras cadastradas e barra de paginacao.
+- Listagem completa dos livros cadastrados no banco de dados com exibicao de titulo, autor, ISBN, categoria e situacao de disponibilidade.
+- Filtragem rapida de obras por categoria selecionada (Tecnologia, Engenharia, Ficcao, Literatura).
+- Formulario de cadastro de novas obras com vinculacao de categoria e situacao do exemplar.
+- Indicador do total de registros cadastrados e barra de paginacao.
 - Barra superior de navegacao com identificacao do usuario autenticado (bibliotecario@email.com - ADMIN) e botao de encerramento de sessao.
 
 ---
 
 ## 2. Demonstracao das Funcionalidades
 
-### Funcionalidade 1: Catalogo Completo de Livros
-Exibicao de todo o acervo registrado no banco de dados com seus respectivos dados cadastrais, identificador ISBN e marcadores visuais de situacao.
+### Catalogo de Livros
+Listagem do acervo cadastrado no sistema, com titulos, autores, codigos ISBN, categorias e situacao de disponibilidade em texto limpo.
 
-![Catalogo Geral de Livros](docs/screenshots/01-catalogo-completo.png)
-
----
-
-### Funcionalidade 2: Filtragem por Categoria
-Permite selecionar uma categoria especifica no menu dropdown e atualizar a listagem para exibir apenas as obras correspondentes, recalculando o total de registros.
-
-![Filtro por Categoria](docs/screenshots/02-filtro-categoria.png)
+![Catalogo de Livros](docs/screenshots/01-catalogo-completo.png)
 
 ---
 
-### Funcionalidade 3: Controle de Disponibilidade de Exemplares
-Diferenciacao visual clara entre obras disponiveis para consulta/retirada (destaque verde) e obras atualmente emprestadas (destaque vermelho), permitindo gestao imediata do acervo.
+### Cadastro de Livros
+Formulario administrativo para insercao de novas obras no catalogo, permitindo preenchimento de titulo, autor, ISBN, selecao de categoria e definicao da disponibilidade.
+
+![Cadastro de Livros](docs/screenshots/02-cadastro-livro.png)
 
 ---
 
@@ -110,7 +105,8 @@ O ambiente utiliza duas redes internas independentes:
    ```
 
 4. Acessar no navegador:
-   - Frontend: `http://localhost:3000`
+   - Catalogo: `http://localhost:3000`
+   - Cadastro: `http://localhost:3000/admin.html`
    - Backend API: `http://localhost:8080/api/books`
 
 5. Para parar a aplicacao mantendo os dados persistidos:
