@@ -1,4 +1,4 @@
-# BookFlow - Sistema de Gestao Bibliotecaria em Conteineres
+# Aplicacao Web utilizando Containers - BookFlow
 
 Aplicacao full-stack desenvolvida para a atividade pratica individual de implantacao com Docker e Docker Compose, composta por tres camadas independentes (Frontend, Backend e Banco de Dados) conectadas por redes distintas.
 
