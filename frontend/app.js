@@ -38,21 +38,50 @@ function verificarAutenticacao() {
             }
         } catch (e) {
             console.error(e);
+            localStorage.removeItem('bookflow_user');
+            if (!isLoginPage) {
+                window.location.href = 'login.html';
+            }
+            return false;
         }
     }
     return true;
 }
 
-function fazerLogin(event) {
+async function fazerLogin(event) {
     if (event) event.preventDefault();
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
 
-    const email = emailInput ? emailInput.value.trim() : 'bibliotecario@email.com';
-    const role = (email.toLowerCase().includes('admin') || email.toLowerCase().includes('bibliotecario')) ? 'ADMIN' : 'USER';
+    const email = emailInput ? emailInput.value.trim() : '';
+    const password = passwordInput ? passwordInput.value : '';
 
-    localStorage.setItem('bookflow_user', JSON.stringify({ email, role }));
-    window.location.href = 'index.html';
+    if (!email || !password) {
+        alert('Por favor, informe e-mail e senha.');
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_BASE}/auth/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        if (res.ok) {
+            const userData = await res.json();
+            localStorage.setItem('bookflow_user', JSON.stringify(userData));
+            window.location.href = 'index.html';
+        } else {
+            const errData = await res.json().catch(() => ({}));
+            alert(errData.message || 'E-mail ou senha incorretos.');
+        }
+    } catch (err) {
+        console.error('Erro ao conectar ao servidor de login:', err);
+        alert('Erro ao conectar ao servidor de login. Verifique se os contêineres estão ativos.');
+    }
 }
 
 function logout() {
@@ -68,10 +97,12 @@ async function carregarCategorias() {
 
         const selectFiltro = document.getElementById('filtroCategoria');
         if (selectFiltro) {
+            const valorAtual = selectFiltro.value;
             selectFiltro.innerHTML = '<option value="">Todas as Categorias</option>';
             categorias.forEach(cat => {
                 selectFiltro.innerHTML += `<option value="${cat.id}">${escapeHtml(cat.name)}</option>`;
             });
+            if (valorAtual) selectFiltro.value = valorAtual;
         }
 
         const selectCadastro = document.getElementById('categoria');
@@ -82,7 +113,7 @@ async function carregarCategorias() {
             });
         }
     } catch (err) {
-        console.error(err);
+        console.error('Erro ao carregar categorias:', err);
     }
 }
 
@@ -91,13 +122,16 @@ async function carregarLivros(catId = '') {
     if (!tbody) return;
 
     try {
-        const url = catId ? `${API_BASE}/books?categoryId=${catId}` : `${API_BASE}/books`;
+        const url = (catId && catId !== '') ? `${API_BASE}/books?categoryId=${encodeURIComponent(catId)}` : `${API_BASE}/books`;
         const res = await fetch(url);
-        if (!res.ok) return;
+        if (!res.ok) {
+            console.error('Erro ao buscar livros, status:', res.status);
+            return;
+        }
         const livros = await res.json();
         renderizarTabela(livros);
     } catch (err) {
-        console.error(err);
+        console.error('Erro de conexão ao carregar livros:', err);
     }
 }
 
@@ -113,11 +147,18 @@ function renderizarTabela(livros) {
     const totalInfo = document.getElementById('totalInfo');
     const paginacaoTexto = document.getElementById('paginacaoTexto');
 
-    if (totalInfo) totalInfo.innerText = `${livros.length} livros cadastrados`;
-    if (paginacaoTexto) paginacaoTexto.innerText = `1-${livros.length} de ${livros.length} registros`;
+    const total = Array.isArray(livros) ? livros.length : 0;
+
+    if (totalInfo) totalInfo.innerText = `${total} livros cadastrados`;
+    if (paginacaoTexto) paginacaoTexto.innerText = total > 0 ? `1-${total} de ${total} registros` : '0 registros';
 
     if (!tbody) return;
     tbody.innerHTML = '';
+
+    if (!Array.isArray(livros) || livros.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 20px;">Nenhum livro encontrado.</td></tr>';
+        return;
+    }
 
     livros.forEach(b => {
         const catNome = b.category ? b.category.name : '-';
@@ -147,8 +188,13 @@ async function cadastrarLivro(event) {
     const title = tituloInput ? tituloInput.value.trim() : '';
     const author = autorInput ? autorInput.value.trim() : '';
     const isbn = isbnInput ? isbnInput.value.trim() : '';
-    const categoryId = categoriaSelect ? categoriaSelect.value : null;
+    const categoryId = categoriaSelect ? categoriaSelect.value : '';
     const available = situacaoSelect ? situacaoSelect.value === 'true' : true;
+
+    if (!title || !author || !isbn || !categoryId) {
+        alert('Por favor, preencha todos os campos obrigatórios (Título, Autor, ISBN e Categoria).');
+        return;
+    }
 
     try {
         const res = await fetch(`${API_BASE}/books`, {
@@ -160,7 +206,7 @@ async function cadastrarLivro(event) {
                 title,
                 author,
                 isbn,
-                category: categoryId ? { id: parseInt(categoryId) } : null,
+                category: { id: parseInt(categoryId) },
                 available
             })
         });
@@ -169,10 +215,11 @@ async function cadastrarLivro(event) {
             alert('Livro cadastrado com sucesso!');
             window.location.href = 'index.html';
         } else {
-            alert('Erro ao cadastrar livro no servidor.');
+            const errData = await res.json().catch(() => ({}));
+            alert(errData.message || 'Erro ao cadastrar livro no servidor.');
         }
     } catch (err) {
-        console.error(err);
+        console.error('Erro ao cadastrar livro:', err);
         alert('Erro de conexão ao cadastrar livro.');
     }
 }

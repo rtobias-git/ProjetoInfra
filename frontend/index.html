@@ -30,12 +30,8 @@
 
         <div class="filter-section">
             <label for="filtroCategoria">Filtrar por Categoria:</label>
-            <select id="filtroCategoria">
+            <select id="filtroCategoria" onchange="filtrarLivros()">
                 <option value="">Todas as Categorias</option>
-                <option value="1">Tecnologia</option>
-                <option value="2">Engenharia</option>
-                <option value="3">Ficção</option>
-                <option value="4">Literatura</option>
             </select>
             <button class="btn-filtrar" onclick="filtrarLivros()">Filtrar</button>
         </div>
@@ -52,39 +48,7 @@
             </thead>
             <tbody id="tabelaCorpo">
                 <tr>
-                    <td>Clean Code</td>
-                    <td>Robert C. Martin</td>
-                    <td>978-0132350884</td>
-                    <td>Tecnologia</td>
-                    <td>Disponível</td>
-                </tr>
-                <tr>
-                    <td>Design Patterns</td>
-                    <td>Erich Gamma, Richard Helm</td>
-                    <td>978-0201633610</td>
-                    <td>Engenharia</td>
-                    <td>Disponível</td>
-                </tr>
-                <tr>
-                    <td>O Senhor dos Anéis</td>
-                    <td>J.R.R. Tolkien</td>
-                    <td>978-8595084759</td>
-                    <td>Ficção</td>
-                    <td>Disponível</td>
-                </tr>
-                <tr>
-                    <td>Dom Casmurro</td>
-                    <td>Machado de Assis</td>
-                    <td>978-8572328227</td>
-                    <td>Literatura</td>
-                    <td>Disponível</td>
-                </tr>
-                <tr>
-                    <td>Arquitetura Limpa</td>
-                    <td>Robert C. Martin</td>
-                    <td>978-8550804606</td>
-                    <td>Tecnologia</td>
-                    <td>Emprestado</td>
+                    <td colspan="5" style="text-align: center; padding: 20px;">Carregando livros...</td>
                 </tr>
             </tbody>
         </table>

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -25,7 +26,7 @@ public class BookController {
 
     @GetMapping
     public List<Book> listAll(@RequestParam(required = false) Long categoryId) {
-        if (categoryId != null) {
+        if (categoryId != null && categoryId > 0) {
             return bookRepository.findByCategoryId(categoryId);
         }
         return bookRepository.findAll();
@@ -40,10 +41,29 @@ public class BookController {
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Book book) {
-        if (book.getCategory() != null && book.getCategory().getId() != null) {
-            Optional<Category> cat = categoryRepository.findById(book.getCategory().getId());
-            cat.ifPresent(book::setCategory);
+        if (book.getTitle() == null || book.getTitle().isBlank()) {
+            return ResponseEntity.badRequest().body(Map.of("message", "O título é obrigatório"));
         }
+        if (book.getAuthor() == null || book.getAuthor().isBlank()) {
+            return ResponseEntity.badRequest().body(Map.of("message", "O autor é obrigatório"));
+        }
+        if (book.getIsbn() == null || book.getIsbn().isBlank()) {
+            return ResponseEntity.badRequest().body(Map.of("message", "O ISBN é obrigatório"));
+        }
+        if (bookRepository.existsByIsbn(book.getIsbn().trim())) {
+            return ResponseEntity.badRequest().body(Map.of("message", "Já existe um livro cadastrado com este ISBN"));
+        }
+        if (book.getCategory() == null || book.getCategory().getId() == null) {
+            return ResponseEntity.badRequest().body(Map.of("message", "A categoria é obrigatória"));
+        }
+
+        Optional<Category> cat = categoryRepository.findById(book.getCategory().getId());
+        if (cat.isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of("message", "Categoria informada não existe"));
+        }
+        book.setCategory(cat.get());
+        book.setIsbn(book.getIsbn().trim());
+
         Book saved = bookRepository.save(book);
         return ResponseEntity.ok(saved);
     }

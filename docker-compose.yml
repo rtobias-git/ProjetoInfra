@@ -9,6 +9,7 @@ networks:
 services:
   app:
     image: tobiasrafaelrosa/frontend:latest
+    build: ./frontend
     container_name: app
     restart: always
     depends_on:
@@ -20,6 +21,7 @@ services:
 
   back-end:
     image: tobiasrafaelrosa/backend:latest
+    build: ./backend
     container_name: back-end
     restart: always
     ports:
