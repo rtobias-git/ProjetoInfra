@@ -8,7 +8,7 @@ networks:
 
 services:
   app:
-    build: ./frontend
+    image: tobiasrafaelrosa/frontend:latest
     container_name: app
     restart: always
     depends_on:
@@ -19,8 +19,8 @@ services:
       - net-app
 
   back-end:
+    image: tobiasrafaelrosa/backend:latest
     container_name: back-end
-    build: ./backend
     restart: always
     ports:
       - "8080:8080"
@@ -28,20 +28,20 @@ services:
       - net-app
       - net-db
     env_file:
-      - "variables.env"
+      - variables.env
     depends_on:
       - db
 
   db:
-    restart: always
-    container_name: mysql
     image: mysql:8.0
+    container_name: mysql
+    restart: always
     ports:
       - "3307:3306"
     networks:
       - net-db
     env_file:
-      - "variables.env"
+      - variables.env
     volumes:
       - db_data:/var/lib/mysql
 
